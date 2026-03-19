@@ -99,10 +99,12 @@ def test_search_by_gcid_success(tmp_path: Path) -> None:
             response = client.post(
                 "/api/v1/subtitles/search",
                 json={"gcid": "GCID-ONE", "cid": "CID-ONE", "name": "demo.mkv"},
+                headers={"X-Subtitles-Trace-Id": "trace-api-001"},
             )
 
     body = response.json()
     assert response.status_code == 200
+    assert response.headers["x-subtitles-trace-id"] == "trace-api-001"
     assert body["matched_by"] == "gcid"
     assert body["confidence"] == "high"
     assert len(body["items"]) == 1

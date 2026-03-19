@@ -20,16 +20,28 @@ class SubtitleProvider(Protocol):
 
     provider_name: str
 
-    async def search_by_gcid(self, gcid: str) -> list[ProviderSubtitle]:
+    async def search_by_gcid(
+        self,
+        gcid: str,
+        trace_id: str | None = None,
+    ) -> list[ProviderSubtitle]:
         """按 GCID 查询字幕。"""
         ...
 
-    async def search_by_name(self, name: str) -> list[ProviderSubtitle]:
+    async def search_by_name(
+        self,
+        name: str,
+        trace_id: str | None = None,
+    ) -> list[ProviderSubtitle]:
         """按文件名查询字幕。"""
         ...
 
     async def download_subtitle(
-        self, url: str, file_name: str, ext: str
+        self,
+        url: str,
+        file_name: str,
+        ext: str,
+        trace_id: str | None = None,
     ) -> DownloadedSubtitle:
         """下载字幕文件。"""
         ...
