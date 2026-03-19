@@ -1,0 +1,12 @@
+services:
+  subtitles-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: subtitles-tools
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./setting.toml:/app/setting.toml:ro
+      - ./data:/app/data
+    restart: unless-stopped

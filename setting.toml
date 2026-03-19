@@ -1,0 +1,10 @@
+app_name = "subtitles-tools"
+app_version = "0.1.0"
+host = "0.0.0.0"
+port = 8055
+thunder_base_url = "https://api-shoulei-ssl.xunlei.com"
+thunder_user_agent = "subtitles-tools/0.1.0"
+upstream_timeout_seconds = 10.0
+data_dir = "data"
+search_cache_ttl_seconds = 86400
+subtitle_cache_ttl_seconds = 604800
