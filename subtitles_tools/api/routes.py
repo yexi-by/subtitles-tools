@@ -8,7 +8,12 @@ from urllib.parse import quote
 
 from fastapi import APIRouter, Depends, Request, Response
 
-from subtitles_tools.models import HealthResponse, SearchRequest, SearchResponse, SearchResponseItem
+from subtitles_tools.models import (
+    HealthResponse,
+    SearchRequest,
+    SearchResponse,
+    SearchResponseItem,
+)
 from subtitles_tools.services import SubtitleService
 
 router = APIRouter()
@@ -78,7 +83,7 @@ async def search_subtitles(
         )
         for item in search_result.items
     ]
-    return SearchResponse(
+    response_payload = SearchResponse(
         matched_by=search_result.matched_by,
         confidence=search_result.confidence,
         items=items,
@@ -121,4 +126,6 @@ async def download_subtitle(
         len(subtitle.content),
         elapsed_ms,
     )
-    return Response(content=subtitle.content, media_type=subtitle.media_type, headers=headers)
+    return Response(
+        content=subtitle.content, media_type=subtitle.media_type, headers=headers
+    )
